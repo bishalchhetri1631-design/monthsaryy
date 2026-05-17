@@ -505,9 +505,10 @@ One more thing… 🎁
 
 <div class="bouquet-wrap" id="bouquetOverlay">
 
-<!-- GitHub Image URL Here -->
+<!-- GitHub Image URL with Cache Buster -->
 <img 
-src="https://raw.githubusercontent.com/bishalchhetri1631-design/monthsary/main/gift-image.jpg"
+id="giftImageMain"
+src=""
 style="
 width:min(420px,92vw);
 height:auto;
@@ -543,6 +544,15 @@ See our memories ✦
 </div>
 
 <script>
+
+// GitHub URLs with cache busting
+const githubBase = 'https://raw.githubusercontent.com/bishalchhetri1631-design/monthsary/main/';
+const timestamp = '?t=' + new Date().getTime();
+
+const mediaURLs = {
+  mainPhoto: githubBase + 'main-photo.jpg' + timestamp,
+  giftImage: githubBase + 'gift-image.jpg' + timestamp
+};
 
 const heartContainer=document.getElementById('hearts');
 
@@ -670,15 +680,31 @@ document.getElementById('bouquetOverlay').classList.remove('show');
 
 }
 
-// Load main photo from GitHub on page load
+// Load images from GitHub on page load
 window.addEventListener('load',()=>{
-  const savedPhoto=localStorage.getItem('mainPhoto');
-  if(savedPhoto){
-    const img=document.getElementById('photoPreview');
-    img.src=savedPhoto;
-    img.style.display='block';
-    document.getElementById('photoText').style.display='none';
-  }
+
+// Load main photo - check localStorage first
+const savedPhoto=localStorage.getItem('mainPhoto');
+if(savedPhoto){
+const img=document.getElementById('photoPreview');
+img.src=savedPhoto;
+img.style.display='block';
+document.getElementById('photoText').style.display='none';
+}
+
+// Load gift image from GitHub
+if(mediaURLs.giftImage){
+const giftImg=document.getElementById('giftImageMain');
+giftImg.src=mediaURLs.giftImage;
+giftImg.onerror=function(){
+console.error('Failed to load gift image');
+giftImg.alt='Image failed to load';
+};
+giftImg.onload=function(){
+console.log('Gift image loaded successfully');
+};
+}
+
 });
 
 document.addEventListener('mousemove',(e)=>{
