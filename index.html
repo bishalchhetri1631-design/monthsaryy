@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Sanjana 💌</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Petit+Formal+Script&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+:root{
+--cream:#fdf6f0;
+--rose:#e8a898;
+--dusty:#c97b6e;
+--deep:#8b4a42;
+--soft:#fffaf7;
+--text:#3d2020;
+}
+
+html,body{
+width:100%;
+min-height:100%;
+overflow-x:hidden;
+font-family:'Jost',sans-serif;
+background:var(--cream);
+scroll-behavior:smooth;
+color:var(--text);
+}
+
+body::-webkit-scrollbar{
+width:8px;
+}
+
+body::-webkit-scrollbar-thumb{
+background:#d9a29a;
+border-radius:10px;
+}
+
+.page{
+width:100%;
+min-height:100vh;
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+padding:40px 20px;
+position:relative;
+}
+
+.page.active{
+display:flex;
+animation:fade .7s ease;
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:none;
+}
+}
+
+.hearts-bg{
+position:fixed;
+inset:0;
+pointer-events:none;
+overflow:hidden;
+z-index:0;
+}
+
+.hb{
+position:absolute;
+bottom:-40px;
+animation:floatUp linear infinite;
+opacity:0;
+}
+
+@keyframes floatUp{
+0%{
+transform:translateY(0) rotate(0deg);
+opacity:0;
+}
+10%{
+opacity:.5;
+}
+100%{
+transform:translateY(-120vh) rotate(360deg);
+opacity:0;
+}
+}
+
+#page1{
+background:radial-gradient(circle at top left,#f9dfd6,transparent),var(--cream);
+}
+
+.title{
+font-family:'Petit Formal Script',cursive;
+font-size:clamp(2.4rem,8vw,4rem);
+text-align:center;
+color:var(--deep);
+margin-bottom:10px;
+}
+
+.subtitle{
+letter-spacing:3px;
+text-transform:uppercase;
+font-size:.8rem;
+color:var(--dusty);
+margin-bottom:30px;
+}
+
+.envelope-wrap{
+width:230px;
+height:160px;
+position:relative;
+cursor:pointer;
+animation:floatEnvelope 3s ease-in-out infinite;
+}
+
+@keyframes floatEnvelope{
+0%,100%{
+transform:translateY(0);
+}
+50%{
+transform:translateY(-10px);
+}
+}
+
+.env-body{
+width:100%;
+height:100%;
+background:linear-gradient(160deg,#c0514a,#992d25);
+position:relative;
+border-radius:5px;
+}
+
+.env-flap{
+position:absolute;
+top:0;
+left:0;
+width:0;
+height:0;
+border-left:115px solid transparent;
+border-right:115px solid transparent;
+border-top:80px solid #84241d;
+transform-origin:top;
+transition:1s ease;
+z-index:5;
+}
+
+.envelope-wrap.open .env-flap{
+transform:rotateX(180deg);
+}
+
+.env-left{
+position:absolute;
+left:0;
+top:0;
+border-top:80px solid transparent;
+border-bottom:80px solid transparent;
+border-left:100px solid #b04840;
+}
+
+.env-right{
+position:absolute;
+right:0;
+top:0;
+border-top:80px solid transparent;
+border-bottom:80px solid transparent;
+border-right:100px solid #b04840;
+}
+
+.env-bottom{
+position:absolute;
+bottom:0;
+border-left:115px solid transparent;
+border-right:115px solid transparent;
+border-bottom:80px solid #a63c34;
+}
+
+.wax{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-30%);
+width:55px;
+height:55px;
+background:gold;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:10;
+font-size:1.2rem;
+}
+
+.tap{
+margin-top:25px;
+color:var(--dusty);
+letter-spacing:2px;
+font-size:.8rem;
+}
+
+.letter,.reasons-card{
+width:min(500px,95vw);
+background:var(--soft);
+padding:35px;
+border-radius:14px;
+box-shadow:0 10px 40px rgba(0,0,0,.1);
+max-height:90vh;
+overflow-y:auto;
+}
+
+.letter-title,.reason-title,.media-title{
+text-align:center;
+font-family:'Petit Formal Script',cursive;
+color:var(--deep);
+font-size:2rem;
+margin-bottom:20px;
+}
+
+.photo-slot{
+width:100%;
+aspect-ratio:4/3;
+border:2px dashed var(--rose);
+border-radius:10px;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+overflow:hidden;
+cursor:pointer;
+margin-bottom:20px;
+background:linear-gradient(135deg,#f8ddd4,#f1c7bb);
+}
+
+.photo-slot img,.media-slot img,.media-slot video{
+width:100%;
+height:100%;
+object-fit:cover;
+display:none;
+}
+
+.photo-text,.slot-label{
+text-align:center;
+color:var(--deep);
+}
+
+.hidden-input{
+display:none;
+}
+
+.letter-body{
+font-family:'Cormorant Garamond',serif;
+font-size:1.1rem;
+line-height:1.9;
+font-style:italic;
+color:#4a2828;
+}
+
+.sign{
+margin-top:25px;
+text-align:right;
+font-family:'Petit Formal Script',cursive;
+font-size:1.5rem;
+color:var(--deep);
+}
+
+.btn,.close-bouquet{
+margin-top:25px;
+padding:13px 30px;
+border:none;
+border-radius:50px;
+background:linear-gradient(135deg,var(--dusty),var(--deep));
+color:white;
+cursor:pointer;
+letter-spacing:2px;
+font-size:.85rem;
+}
+
+.reasons{
+list-style:none;
+}
+
+.reasons li{
+padding:12px 0;
+border-bottom:1px solid rgba(0,0,0,.08);
+font-family:'Cormorant Garamond',serif;
+font-size:1.1rem;
+}
+
+.footer{
+text-align:center;
+margin-top:25px;
+color:var(--dusty);
+font-family:'Petit Formal Script',cursive;
+line-height:1.7;
+}
+
+#page4{
+background:radial-gradient(circle at center,#fff9e6 0%,#fdedc8 40%,#fdf6f0 100%);
+}
+
+.gift-intro{
+text-align:center;
+margin-bottom:30px;
+}
+
+.gift-intro h2{
+font-family:'Petit Formal Script',cursive;
+color:var(--deep);
+font-size:clamp(2rem,6vw,3rem);
+}
+
+.gift-box-wrap{
+display:flex;
+flex-direction:column;
+align-items:center;
+cursor:pointer;
+}
+
+.gift-svg{
+width:150px;
+transition:1s ease;
+}
+
+.gift-box-wrap.opened .gift-svg{
+transform:scale(0);
+opacity:0;
+}
+
+.bouquet-wrap{
+position:fixed;
+inset:0;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+background:rgba(255,248,244,.95);
+backdrop-filter:blur(6px);
+z-index:100;
+opacity:0;
+pointer-events:none;
+transition:.5s;
+padding:20px;
+}
+
+.bouquet-wrap.show{
+opacity:1;
+pointer-events:all;
+}
+
+@keyframes floatBouquet{
+0%,100%{
+transform:translateY(0px);
+}
+50%{
+transform:translateY(-10px);
+}
+}
+
+.sparkle{
+position:fixed;
+pointer-events:none;
+animation:spark .8s linear forwards;
+z-index:9999;
+}
+
+@keyframes spark{
+to{
+transform:translateY(-20px);
+opacity:0;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="hearts-bg" id="hearts"></div>
+
+<div class="page active" id="page1">
+
+<p class="subtitle">a little something for you</p>
+
+<h1 class="title">
+A Letter For<br>
+Sanjana 🤍
+</h1>
+
+<div class="envelope-wrap" id="envBtn">
+
+<div class="env-body">
+<div class="env-flap"></div>
+<div class="env-left"></div>
+<div class="env-right"></div>
+<div class="env-bottom"></div>
+<div class="wax">🌸</div>
+</div>
+
+</div>
+
+<p class="tap">tap to open ✦</p>
+
+</div>
+
+<div class="page" id="page2">
+
+<div class="letter">
+
+<h2 class="letter-title">My Dearest Sanjana,</h2>
+
+<div class="photo-slot" onclick="document.getElementById('photoInput').click()">
+
+<img id="photoPreview">
+
+<div class="photo-text" id="photoText">
+📸<br><br>
+Tap to add your photo
+</div>
+
+</div>
+
+<input type="file" id="photoInput" class="hidden-input" accept="image/*" onchange="loadPhoto(event)">
+
+<div class="letter-body">
+<p id="typedText"></p>
+</div>
+
+<div class="sign">
+Forever yours,<br>
+Bishal 💌
+</div>
+
+<button class="btn" onclick="goToPage(3)">
+See why I love you →
+</button>
+
+</div>
+
+</div>
+
+<div class="page" id="page3">
+
+<div class="reasons-card">
+
+<h2 class="reason-title">Reasons I Love You</h2>
+
+<ul class="reasons">
+<li>♡ You make my hardest days feel lighter.</li>
+<li>♡ Your smile is my favorite thing in the world.</li>
+<li>♡ You understand me without needing words.</li>
+<li>♡ You make ordinary moments feel magical.</li>
+<li>♡ You make me feel safe, seen, and loved.</li>
+<li>♡ Your laugh is the best sound I've ever heard.</li>
+<li>♡ Being with you feels like coming home.</li>
+<li>♡ You are the best part of every single day.</li>
+<li>♡ You choose me, and I'll always choose you.</li>
+<li>♡ I love you simply for being exactly you 🌸</li>
+</ul>
+
+<div class="footer">
+It's always you.<br>
+And it will always be you 🤍
+</div>
+
+<button class="btn" onclick="goToPage(4)">
+One more thing… 🎁
+</button>
+
+</div>
+
+</div>
+
+<div class="page" id="page4">
+
+<div class="gift-intro">
+<h2>A Little Gift for You</h2>
+<p>3 months of you. 3 months of us 🌻</p>
+</div>
+
+<div class="gift-box-wrap" id="giftBox" onclick="openGift()">
+
+<svg class="gift-svg" viewBox="0 0 200 200">
+<rect x="20" y="100" width="160" height="90" rx="6" fill="#c0514a"/>
+<rect x="10" y="80" width="180" height="30" rx="6" fill="#992d25"/>
+<rect x="90" y="80" width="20" height="110" fill="#f5c518"/>
+<rect x="10" y="88" width="180" height="14" fill="#f5c518"/>
+</svg>
+
+<p class="tap">tap to unwrap ✦</p>
+
+</div>
+
+<div class="bouquet-wrap" id="bouquetOverlay">
+
+<!-- GitHub Image URL Here -->
+<img 
+src="https://raw.githubusercontent.com/bishalchhetri1631-design/monthsary/main/gift-image.jpg"
+style="
+width:min(420px,92vw);
+height:auto;
+border-radius:28px;
+box-shadow:0 18px 45px rgba(0,0,0,.18);
+border:6px solid #fff;
+object-fit:cover;
+animation:floatBouquet 3s ease-in-out infinite;
+">
+
+<h2 class="letter-title">These are for you 🌻</h2>
+
+<p style="
+font-family:'Cormorant Garamond',serif;
+font-size:1.2rem;
+color:#8b4a42;
+margin-top:-8px;
+margin-bottom:14px;
+text-align:center;
+max-width:340px;
+line-height:1.7;
+">
+A bouquet filled with sunshine,<br>
+just like the happiness you bring into my life ✨
+</p>
+
+<button class="close-bouquet" onclick="closeBouquet()">
+See our memories ✦
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+const heartContainer=document.getElementById('hearts');
+
+const emojis=['♡','❤','🌸','💕','🤍','🌻'];
+
+for(let i=0;i<25;i++){
+
+const h=document.createElement('div');
+
+h.className='hb';
+
+h.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+
+h.style.left=Math.random()*100+'vw';
+
+h.style.fontSize=(0.8+Math.random()*1.5)+'rem';
+
+h.style.animationDuration=(8+Math.random()*10)+'s';
+
+heartContainer.appendChild(h);
+
+}
+
+document.getElementById('envBtn').addEventListener('click',()=>{
+
+document.getElementById('envBtn').classList.add('open');
+
+setTimeout(()=>{
+
+goToPage(2);
+
+typeWriter();
+
+},900);
+
+});
+
+function goToPage(num){
+
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+
+document.getElementById('page'+num).classList.add('active');
+
+window.scrollTo(0,0);
+
+}
+
+const text=`Thank you for being my favorite notification, my safe place, and the reason my days feel warmer.
+
+These 3 months with you have been the most beautiful chapters of my life.
+
+You make my heart feel things it didn't know it could 🌸`;
+
+let i=0;
+
+function typeWriter(){
+
+const target=document.getElementById('typedText');
+
+target.innerHTML='';
+
+i=0;
+
+function typing(){
+
+if(i<text.length){
+
+target.innerHTML+=text.charAt(i);
+
+i++;
+
+setTimeout(typing,35);
+
+}
+
+}
+
+typing();
+
+}
+
+function loadPhoto(event){
+
+const file=event.target.files[0];
+
+if(!file)return;
+
+const reader=new FileReader();
+
+reader.onload=function(e){
+
+const data=e.target.result;
+
+const img=document.getElementById('photoPreview');
+
+img.src=data;
+
+img.style.display='block';
+
+document.getElementById('photoText').style.display='none';
+
+localStorage.setItem('mainPhoto',data);
+
+}
+
+reader.readAsDataURL(file);
+
+}
+
+function openGift(){
+
+document.getElementById('giftBox').classList.add('opened');
+
+setTimeout(()=>{
+
+document.getElementById('bouquetOverlay').classList.add('show');
+
+},500);
+
+}
+
+function closeBouquet(){
+
+document.getElementById('bouquetOverlay').classList.remove('show');
+
+}
+
+// Load main photo from GitHub on page load
+window.addEventListener('load',()=>{
+  const savedPhoto=localStorage.getItem('mainPhoto');
+  if(savedPhoto){
+    const img=document.getElementById('photoPreview');
+    img.src=savedPhoto;
+    img.style.display='block';
+    document.getElementById('photoText').style.display='none';
+  }
+});
+
+document.addEventListener('mousemove',(e)=>{
+
+const s=document.createElement('div');
+
+s.className='sparkle';
+
+s.innerHTML='✦';
+
+s.style.left=e.clientX+'px';
+
+s.style.top=e.clientY+'px';
+
+document.body.appendChild(s);
+
+setTimeout(()=>s.remove(),800);
+
+});
+
+</script>
+
+</body>
+</html>
